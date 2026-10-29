@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSim Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="password.html">Password</a>
+            <a href="#modules">Modules</a>
+        </nav>
+    </header>
+
+    <section class="dashboard">
+
+        <div class="dashboard-heading">
+
+            <p class="welcome">CYBER SECURITY TRAINING</p>
+
+            <h1>Security Dashboard</h1>
+
+            <p>
+                Choose a security module and start learning
+                through interactive simulations.
+            </p>
+
+        </div>
+
+        <!-- Statistics -->
+
+   <div class="stats">
+
+    <div class="stat-card">
+        <h2>9</h2>
+        <p>Security Modules</p>
+    </div>
+
+    <div class="stat-card">
+        <h2 id="challengesCompleted">0</h2>
+        <p>Challenges Completed</p>
+    </div>
+
+    <div class="stat-card">
+        <h2 id="securityScore">0%</h2>
+        <p>Security Score</p>
+    </div>
+
+   </div>
+        <!-- Security Modules -->
+
+        <h2 id="modules">Security Modules</h2>
+
+        <div class="module-grid">
+
+        <a href="dashboard.html"></a>    
+
+        <a href="security-awareness.html">🛡️ Security Awareness</a>
+
+        <a href="authentication.html">🔐 Authentication</a>
+
+        <a href="access-control.html">🔑 Access Control</a> 
+        
+        <a href="incident-response.html">🚨 Incident Response</a>
+
+        <a href="malware.html">🦠 Malware Detection</a>
+
+        <a href="social-engineering.html">🎭 Social Engineering</a>
+
+        <a href="backup.html" class="module-card">
+            <h3>💾 Backup & Recovery</h3>
+             <p>Protect and recover important data.</p>
+         </a>
+
+
+            <!-- Password Security -->
+
+            <div class="module-card">
+                <span>🔐</span>
+
+                <h3>Password Security</h3>
+
+                <p>
+                    Check how secure your password is.
+                </p>
+
+                <button onclick="openModule('password.html')">
+                    Start
+                </button>
+            </div>
+
+
+            <!-- Password Generator -->
+
+            <div class="module-card">
+                <span>🔑</span>
+
+                <h3>Password Generator</h3>
+
+                <p>
+                    Generate strong and secure passwords.
+                </p>
+
+                <button onclick="openModule('generator.html')">
+                    Start
+                </button>
+            </div>
+
+
+            <!-- Password Strength -->
+
+            <div class="module-card">
+                <span>💪</span>
+
+                <h3>Password Strength</h3>
+
+                <p>
+                    Learn how password strength is measured.
+                </p>
+
+                <button onclick="openModule('strength.html')">
+                    Start
+                </button>
+            </div>
+
+
+            <!-- Phishing Detection -->
+        
+            <div class="module-card">
+                <span>🎣</span>
+
+                <h3>Phishing Detection</h3>
+
+                <p>
+                    Identify suspicious emails and messages.
+                </p>
+
+                <button onclick="openModule('phishing.html')">
+                    Start
+                </button>
+            </div>
+
+
+            <!-- Threat Detection -->
+
+            <div class="module-card">
+                <span>⚠️</span>
+
+                <h3>Threat Detection</h3>
+
+                <p>
+                    Identify common cybersecurity threats.
+                </p>
+
+                <button onclick="openModule('threat.html')">
+                    Start
+                </button>
+            </div>
+
+
+            <!-- Network Security -->
+
+            <div class="module-card">
+                <span>🌐</span>
+
+                <h3>Network Security</h3>
+
+                <p>
+                    Explore basic network security concepts.
+                </p>
+
+                <button onclick="openModule('network.html')">
+                    Start
+                </button>
+            </div>
+
+
+            <!-- Firewall Simulator -->
+
+            <div class="module-card">
+                <span>🔥</span>
+
+                <h3>Firewall Simulator</h3>
+
+                <p>
+                    Understand how a firewall filters traffic.
+                </p>
+
+                <button onclick="openModule('firewall.html')">
+                    Start
+                </button>
+            </div>
+
+
+            <!-- Security Awareness -->
+
+            <div class="module-card">
+                <span>🛡️</span>
+
+                <h3>Security Awareness</h3>
+                 <a href="encryption.html">
+                    <h3>🔐 Encryption</h3>
+                <p>
+                    Learn important cybersecurity safety practices.
+                </p>
+
+                <button onclick="openModule('security-awareness.html')">
+                    Start
+                </button>
+                 </a>
+            </div>
+
+
+            <!-- Security Quiz -->
+
+            <div class="module-card">
+                <span>🧠</span>
+
+                <h3>Security Quiz</h3>
+
+                <p>
+                    Test your cybersecurity knowledge.
+                </p>
+
+                <button onclick="openModule('quiz.html')">
+                    Start
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        <p>
+            © 2026 Cyber Security Simulator | Educational Project
+        </p>
+    </footer>
+<script>
+
+    function openModule(page) {
+        window.location.href = page;
+    }
+
+    // Load completed challenges
+    let completed = localStorage.getItem("challengesCompleted") || 0;
+
+    // Display completed challenges
+    document.getElementById("challengesCompleted").innerText = completed;
+
+    // Load security score from backend
+    fetch("http://127.0.0.1:5000/api/scores")
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.length > 0) {
+
+                // Get latest score
+                let latestScore = data[data.length - 1].score;
+
+                 console.log("Backend Score:", latestScore);
+                 
+                // Convert score out of 5 to percentage
+                let percentage = latestScore * 20;
+
+                document.getElementById("securityScore").innerText =
+                    percentage + "%";
+
+            } else {
+
+                document.getElementById("securityScore").innerText = "0%";
+
+            }
+
+        })
+        .catch(error => {
+            console.log("Backend connection failed:", error);
+        });
+
+</script>
+<script src="dashboard.js"></script>
+<script src="theme.js"></script>
+</body>
+</html>

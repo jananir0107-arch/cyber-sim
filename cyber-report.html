@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cyber Security Report - CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .report-card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .report-card h3 {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        .score-box {
+            text-align: center;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        #securityScore {
+            font-size: 45px;
+            font-weight: bold;
+        }
+
+        .report-list {
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📊 Cyber Security Report</h1>
+        <p>View your overall CyberSim security performance</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+
+            <h2>🛡️ Overall Security Score</h2>
+
+            <div class="score-box">
+
+                <div id="securityScore">
+                    85%
+                </div>
+
+                <p>
+                    Good Security Awareness
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>📈 Security Performance</h2>
+
+            <div class="report-grid">
+
+                <div class="report-card">
+                    <h3>10</h3>
+                    <p>Modules Completed</p>
+                </div>
+
+                <div class="report-card">
+                    <h3>4</h3>
+                    <p>Threats Handled</p>
+                </div>
+
+                <div class="report-card">
+                    <h3>85%</h3>
+                    <p>Quiz Performance</p>
+                </div>
+
+                <div class="report-card">
+                    <h3>90%</h3>
+                    <p>Safety Awareness</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>✅ Completed Security Skills</h2>
+
+            <ul class="report-list">
+
+                <li>✅ Phishing Detection</li>
+
+                <li>✅ Network Security</li>
+
+                <li>✅ Firewall Simulation</li>
+
+                <li>✅ Threat Detection</li>
+
+                <li>✅ Malware Awareness</li>
+
+                <li>✅ Data Backup</li>
+
+                <li>✅ Incident Response</li>
+
+                <li>✅ Access Control</li>
+
+                <li>✅ Authentication</li>
+
+                <li>✅ Security Quiz</li>
+
+            </ul>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>🎯 Security Recommendations</h2>
+
+            <ul class="report-list">
+
+                <li>🔐 Use strong and unique passwords.</li>
+
+                <li>🎣 Always verify suspicious emails and links.</li>
+
+                <li>🔄 Keep software and operating systems updated.</li>
+
+                <li>💾 Maintain regular backups of important data.</li>
+
+                <li>🛡️ Enable multi-factor authentication whenever possible.</li>
+
+            </ul>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>🏆 Final Assessment</h2>
+
+            <p>
+                You have completed the major CyberSim security modules.
+                Continue practicing the simulations to improve your
+                cyber security knowledge and awareness.
+            </p>
+
+            <h3>
+                🎉 Keep Learning. Stay Secure!
+            </h3>
+
+        </section>
+
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+    <script src="theme.js"></script>
+</body>
+</html>

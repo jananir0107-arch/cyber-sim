@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Firewall Simulator | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .firewall-dashboard {
+            margin-top: 25px;
+        }
+
+        .network-status {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .status-card {
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .status-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .request-box {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .request-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .detail {
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .risk {
+            font-weight: bold;
+        }
+
+        .firewall-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .firewall-actions button {
+            flex: 1;
+            padding: 15px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        #firewallResult {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .rule-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .rule-box select,
+        .rule-box input {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .rule-box button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+
+            .network-status,
+            .request-details {
+                grid-template-columns: 1fr;
+            }
+
+            .firewall-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <header>
+
+        <h1>🛡️ Firewall Control Room</h1>
+
+        <p>
+            Monitor network traffic and protect the system
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <!-- INTRODUCTION -->
+
+        <section class="card">
+
+            <h2>🔥 Firewall Simulator</h2>
+
+            <p>
+                A firewall monitors incoming network traffic and
+                decides whether a connection should be allowed or blocked.
+            </p>
+
+        </section>
+
+
+        <!-- DASHBOARD -->
+
+        <section class="card firewall-dashboard">
+
+            <h2>📊 Network Security Dashboard</h2>
+
+            <div class="network-status">
+
+                <div class="status-card">
+                    <h3>🌐 Network</h3>
+                    <p id="networkStatus">🟢 Active</p>
+                </div>
+
+                <div class="status-card">
+                    <h3>🛡️ Security Score</h3>
+                    <p id="securityScore">50</p>
+                </div>
+
+                <div class="status-card">
+                    <h3>🚫 Blocked</h3>
+                    <p id="blockedCount">0</p>
+                </div>
+
+                <div class="status-card">
+                    <h3>✅ Allowed</h3>
+                    <p id="allowedCount">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NETWORK REQUEST -->
+
+        <section class="card">
+
+            <h2>🚨 Incoming Network Request</h2>
+
+            <div class="request-box">
+
+                <h3 id="requestTitle">
+                    Analyzing incoming connection...
+                </h3>
+
+                <div class="request-details">
+
+                    <div class="detail">
+                        <strong>🌐 Source IP</strong>
+                        <p id="sourceIP">---</p>
+                    </div>
+
+                    <div class="detail">
+                        <strong>🔌 Port</strong>
+                        <p id="port">---</p>
+                    </div>
+
+                    <div class="detail">
+                        <strong>📡 Protocol</strong>
+                        <p id="protocol">---</p>
+                    </div>
+
+                    <div class="detail">
+                        <strong>⚠️ Risk Level</strong>
+                        <p id="riskLevel" class="risk">---</p>
+                    </div>
+
+                </div>
+
+
+                <p id="requestDescription">
+                    Waiting for network request...
+                </p>
+
+
+                <div class="firewall-actions">
+
+                    <button onclick="allowRequest()">
+                        ✅ Allow Connection
+                    </button>
+
+                    <button onclick="blockRequest()">
+                        🚫 Block Connection
+                    </button>
+
+                </div>
+
+
+                <p id="firewallResult"></p>
+
+
+                <button onclick="newRequest()">
+                    🔄 Next Network Request
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FIREWALL RULE -->
+
+        <section class="card">
+
+            <h2>⚙️ Create Firewall Rule</h2>
+
+            <div class="rule-box">
+
+                <p>
+                    Create a rule to automatically handle future requests.
+                </p>
+
+                <label>Protocol:</label>
+
+                <select id="ruleProtocol">
+
+                    <option value="TCP">TCP</option>
+                    <option value="UDP">UDP</option>
+                    <option value="HTTP">HTTP</option>
+                    <option value="HTTPS">HTTPS</option>
+
+                </select>
+
+
+                <label>Port:</label>
+
+                <input
+                    type="number"
+                    id="rulePort"
+                    placeholder="Example: 22">
+
+
+                <label>Action:</label>
+
+                <select id="ruleAction">
+
+                    <option value="block">🚫 Block</option>
+                    <option value="allow">✅ Allow</option>
+
+                </select>
+
+
+                <br><br>
+
+                <button onclick="createRule()">
+                    ➕ Add Firewall Rule
+                </button>
+
+                <p id="ruleResult"></p>
+
+            </div>
+
+        </section>
+
+
+        <br>
+
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Cyber Security Simulator | Educational Project
+        </p>
+
+    </footer>
+
+
+    <script src="firewall.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+
+</html>

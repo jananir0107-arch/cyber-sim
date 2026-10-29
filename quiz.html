@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cyber Security Mission | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .mission-box {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .mission-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .mission-stat {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .risk-level {
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .question-box {
+            margin-top: 25px;
+        }
+
+        #question {
+            font-size: 21px;
+            line-height: 1.5;
+        }
+
+        .options {
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            opacity: 0.8;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #nextBtn {
+            margin-top: 20px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            display: none;
+        }
+
+        .final-report {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 650px) {
+            .mission-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h1>🎯 Cyber Security Mission</h1>
+
+            <p>
+                Make the right decisions and protect the organization
+                from cyber attacks.
+            </p>
+
+        </section>
+
+
+        <section class="card mission-box">
+
+            <div class="mission-header">
+
+                <div class="mission-stat">
+
+                    <h3>❤️ Lives</h3>
+
+                    <p id="lives">3</p>
+
+                </div>
+
+
+                <div class="mission-stat">
+
+                    <h3>🛡️ Score</h3>
+
+                    <p id="score">0</p>
+
+                </div>
+
+
+                <div class="mission-stat">
+
+                    <h3>🎯 Mission</h3>
+
+                    <p id="questionNumber">
+                        1 / 5
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-level" id="riskLevel">
+
+                ⚠️ Threat Level: Medium
+
+            </div>
+
+
+            <div class="question-box">
+
+                <h2 id="question">
+                    Loading mission...
+                </h2>
+
+
+                <div class="options" id="options">
+                </div>
+
+
+                <p id="feedback"></p>
+
+
+                <button id="nextBtn" onclick="nextQuestion()">
+                    Next Mission ➡️
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="card final-report" id="finalReport"
+            style="display:none;">
+
+            <h2>🏆 Mission Complete</h2>
+
+            <h3 id="finalScore"></h3>
+
+            <p id="rank"></p>
+
+            <p id="report"></p>
+
+
+            <button onclick="restartQuiz()">
+                🔄 Start New Mission
+            </button>
+
+        </section>
+
+
+        <br>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Cyber Security Simulator | Educational Project
+        </p>
+
+    </footer>
+
+
+    <script src="quiz.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+
+</html>

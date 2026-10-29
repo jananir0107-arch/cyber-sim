@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Threat Hunting | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .threat-box {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .threat-alert {
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 0, 0, 0.12);
+            margin-bottom: 25px;
+        }
+
+        .threat-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .detail-card {
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .action-buttons button {
+            padding: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .score-dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .score-card {
+            padding: 18px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        #threatResult {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .new-threat {
+            margin-top: 25px;
+            padding: 12px 25px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            .threat-details,
+            .action-buttons,
+            .score-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h1>🕵️ Cyber Threat Hunting Simulator</h1>
+
+            <p>
+                Detect, investigate and respond to cyber threats
+                before they damage the system.
+            </p>
+
+        </section>
+
+
+        <section class="card threat-box">
+
+            <div class="threat-alert">
+
+                <h2 id="threatTitle">
+                    🚨 Threat Detected
+                </h2>
+
+                <p id="threatDescription">
+                    Loading threat...
+                </p>
+
+            </div>
+
+
+            <h2>🔍 Threat Intelligence</h2>
+
+
+            <div class="threat-details">
+
+                <div class="detail-card">
+
+                    <strong>🌐 Source IP</strong>
+
+                    <p id="sourceIP">
+                        ---
+                    </p>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <strong>🎯 Attack Type</strong>
+
+                    <p id="attackType">
+                        ---
+                    </p>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <strong>⚠️ Risk Level</strong>
+
+                    <p id="riskLevel">
+                        ---
+                    </p>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <strong>💻 Affected System</strong>
+
+                    <p id="affectedSystem">
+                        ---
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <h2>🧠 Choose Your Response</h2>
+
+            <p>
+                Analyze the threat and select the safest action.
+            </p>
+
+
+            <div class="action-buttons">
+
+                <button onclick="takeAction('investigate')">
+                    🔍 Investigate
+                </button>
+
+                <button onclick="takeAction('block')">
+                    🚫 Block Threat
+                </button>
+
+                <button onclick="takeAction('isolate')">
+                    🔌 Isolate System
+                </button>
+
+                <button onclick="takeAction('ignore')">
+                    ❌ Ignore Threat
+                </button>
+
+            </div>
+
+
+            <p id="threatResult"></p>
+
+
+            <button class="new-threat" onclick="newThreat()">
+                🔄 Generate New Threat
+            </button>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>📊 Threat Hunting Dashboard</h2>
+
+            <div class="score-dashboard">
+
+                <div class="score-card">
+
+                    <h3>🛡️ Security Score</h3>
+
+                    <p id="securityScore">
+                        50
+                    </p>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <h3>🚨 Threats Handled</h3>
+
+                    <p id="threatsHandled">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <h3>🔎 Investigations</h3>
+
+                    <p id="investigations">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>🛡️ Threat Hunting Tips</h2>
+
+            <ul>
+
+                <li>Always investigate suspicious activity.</li>
+
+                <li>Block dangerous connections.</li>
+
+                <li>Isolate infected systems.</li>
+
+                <li>Collect information before taking action.</li>
+
+                <li>Never ignore critical threats.</li>
+
+            </ul>
+
+        </section>
+
+
+        <br>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Cyber Security Simulator | Educational Project
+        </p>
+
+    </footer>
+
+
+    <script src="threat.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+
+</html>

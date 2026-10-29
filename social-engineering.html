@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Social Engineering | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .challenge-box {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        #scenario {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 25px 0;
+        }
+
+        .answer-btn {
+            display: block;
+            width: 100%;
+            margin: 12px 0;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .answer-btn:hover {
+            opacity: 0.8;
+        }
+
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #nextBtn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h1>🎭 Social Engineering</h1>
+
+            <p>
+                Learn how attackers manipulate people to steal
+                confidential information.
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>📚 Common Techniques</h2>
+
+            <div class="modules">
+
+                <div class="module-card">
+                    <h3>🎣 Phishing</h3>
+                    <p>
+                        Fake emails or websites are used to steal
+                        sensitive information.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>📞 Vishing</h3>
+                    <p>
+                        Attackers use phone calls to trick victims.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>💬 Smishing</h3>
+                    <p>
+                        Fake SMS messages are used to trick users.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>🎭 Pretexting</h3>
+                    <p>
+                        Attackers create a fake identity or story.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- OPERATION -->
+
+        <section class="card challenge-box">
+
+            <h2>🎯 Social Engineering Challenge</h2>
+
+            <p>
+                Identify the type of social engineering attack.
+            </p>
+
+            <p id="scenario">
+                Loading scenario...
+            </p>
+
+
+            <button class="answer-btn"
+                    onclick="checkAnswer('phishing')">
+                🎣 Phishing
+            </button>
+
+            <button class="answer-btn"
+                    onclick="checkAnswer('vishing')">
+                📞 Vishing
+            </button>
+
+            <button class="answer-btn"
+                    onclick="checkAnswer('smishing')">
+                💬 Smishing
+            </button>
+
+            <button class="answer-btn"
+                    onclick="checkAnswer('pretexting')">
+                🎭 Pretexting
+            </button>
+
+
+            <p id="result"></p>
+
+
+            <button id="nextBtn"
+                    onclick="nextScenario()">
+                ➡️ Next Scenario
+            </button>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>🛡️ How to Stay Safe</h2>
+
+            <ul>
+                <li>Never share passwords or OTPs.</li>
+                <li>Verify unexpected requests.</li>
+                <li>Do not click suspicious links.</li>
+                <li>Check the sender before responding.</li>
+                <li>Use multi-factor authentication.</li>
+            </ul>
+
+        </section>
+
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Cyber Security Simulator | Educational Project
+        </p>
+
+    </footer>
+
+
+    <script src="social-engineering.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+
+</html>

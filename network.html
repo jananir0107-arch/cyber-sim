@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Network Security | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .network-box {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .network-status {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .status-card {
+            padding: 18px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .network-map {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .devices {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .device {
+            padding: 18px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: 0.3s;
+        }
+
+        .device.active {
+            border: 2px solid #00e5ff;
+        }
+
+        .event-box {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            background: rgba(255, 0, 0, 0.08);
+        }
+
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .event-detail {
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .network-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .network-actions button {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #actionResult {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .scan-box {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        #scanProgress {
+            width: 100%;
+            height: 20px;
+            margin-top: 15px;
+        }
+
+        .event-log {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        #eventLog {
+            max-height: 180px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .log-entry {
+            padding: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 700px) {
+            .network-status,
+            .devices,
+            .event-details,
+            .network-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h1>🌐 Cyber Network Defense Center</h1>
+
+            <p>
+                Monitor network activity, detect suspicious connections
+                and protect connected systems.
+            </p>
+
+        </section>
+
+
+        <!-- Network Dashboard -->
+
+        <section class="card network-box">
+
+            <h2>📊 Network Security Dashboard</h2>
+
+            <div class="network-status">
+
+                <div class="status-card">
+
+                    <h3>🌐 Network</h3>
+
+                    <p id="networkStatus">
+                        🟢 Secure
+                    </p>
+
+                </div>
+
+
+                <div class="status-card">
+
+                    <h3>🛡️ Security Score</h3>
+
+                    <p id="securityScore">
+                        50
+                    </p>
+
+                </div>
+
+
+                <div class="status-card">
+
+                    <h3>💻 Devices</h3>
+
+                    <p id="deviceCount">
+                        4
+                    </p>
+
+                </div>
+
+
+                <div class="status-card">
+
+                    <h3>🚨 Threats</h3>
+
+                    <p id="threatCount">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Network Map -->
+
+            <div class="network-map">
+
+                <h2>🗺️ Live Network Map</h2>
+
+                <p>
+                    Connected devices
+                </p>
+
+
+                <div class="devices">
+
+                    <div class="device" id="device1">
+
+                        <h3>🖥️ PC-01</h3>
+
+                        <p>192.168.1.10</p>
+
+                        <span>🟢 Online</span>
+
+                    </div>
+
+
+                    <div class="device" id="device2">
+
+                        <h3>🖥️ PC-02</h3>
+
+                        <p>192.168.1.20</p>
+
+                        <span>🟢 Online</span>
+
+                    </div>
+
+
+                    <div class="device" id="device3">
+
+                        <h3>🗄️ File Server</h3>
+
+                        <p>192.168.1.50</p>
+
+                        <span>🟢 Online</span>
+
+                    </div>
+
+
+                    <div class="device" id="device4">
+
+                        <h3>📱 Mobile</h3>
+
+                        <p>192.168.1.70</p>
+
+                        <span>🟢 Online</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Network Event -->
+
+        <section class="card network-box">
+
+            <h2>🚨 Live Network Event</h2>
+
+            <div class="event-box">
+
+                <h3 id="eventTitle">
+                    🔍 Monitoring Network...
+                </h3>
+
+
+                <p id="eventDescription">
+                    Waiting for network activity.
+                </p>
+
+
+                <div class="event-details">
+
+                    <div class="event-detail">
+
+                        <strong>🌐 Source</strong>
+
+                        <p id="eventSource">
+                            ---
+                        </p>
+
+                    </div>
+
+
+                    <div class="event-detail">
+
+                        <strong>🎯 Destination</strong>
+
+                        <p id="eventDestination">
+                            ---
+                        </p>
+
+                    </div>
+
+
+                    <div class="event-detail">
+
+                        <strong>📡 Protocol</strong>
+
+                        <p id="eventProtocol">
+                            ---
+                        </p>
+
+                    </div>
+
+
+                    <div class="event-detail">
+
+                        <strong>⚠️ Risk</strong>
+
+                        <p id="eventRisk">
+                            ---
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <h3>🧠 Choose Your Response</h3>
+
+
+                <div class="network-actions">
+
+                    <button onclick="networkAction('monitor')">
+                        👁️ Monitor
+                    </button>
+
+                    <button onclick="networkAction('block')">
+                        🚫 Block Connection
+                    </button>
+
+                    <button onclick="networkAction('isolate')">
+                        🔌 Isolate Device
+                    </button>
+
+                    <button onclick="networkAction('scan')">
+                        🔍 Scan Network
+                    </button>
+
+                </div>
+
+
+                <p id="actionResult"></p>
+
+
+                <button onclick="generateEvent()">
+                    🔄 Generate New Event
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Network Scanner -->
+
+        <section class="card network-box">
+
+            <h2>🔍 Network Scanner</h2>
+
+            <p>
+                Scan connected devices for suspicious activity.
+            </p>
+
+
+            <button onclick="scanNetwork()">
+                🔍 Start Network Scan
+            </button>
+
+
+            <progress
+                id="scanProgress"
+                value="0"
+                max="100">
+            </progress>
+
+
+            <p id="scanResult">
+                Scanner ready.
+            </p>
+
+        </section>
+
+
+        <!-- Event Log -->
+
+        <section class="card network-box">
+
+            <h2>📋 Network Event Log</h2>
+
+            <div class="event-log">
+
+                <div id="eventLog">
+
+                    <div class="log-entry">
+                        🟢 Network monitoring started.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <br>
+
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Cyber Security Simulator | Educational Project
+        </p>
+
+    </footer>
+
+
+    <script src="network.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+
+</html>

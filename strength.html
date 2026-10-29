@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker | CyberSim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🛡️ CyberSim</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="password.html">Password Security</a>
+    </nav>
+</header>
+
+<section class="checker-page">
+
+    <div class="password-header">
+        <p class="welcome">SECURITY MODULE 02</p>
+
+        <h1>🔑 Password Strength Checker</h1>
+
+        <p>
+            Analyze your password and get a security score.
+        </p>
+    </div>
+
+    <div class="checker-box">
+
+        <input
+            type="password"
+            id="userPassword"
+            placeholder="Enter password"
+        >
+
+        <button onclick="analyzePassword()">
+            Check Strength
+        </button>
+
+        <div class="score">
+            <h2 id="score">0 / 100</h2>
+            <p id="result">Enter a password to begin</p>
+        </div>
+
+        <div class="suggestions">
+
+            <h3>Security Suggestions</h3>
+
+            <p id="suggestion1">• Use at least 8 characters</p>
+            <p id="suggestion2">• Add uppercase and lowercase letters</p>
+            <p id="suggestion3">• Add numbers</p>
+            <p id="suggestion4">• Add special characters</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Cyber Security Simulator | Educational Project</p>
+</footer>
+
+<script src="strength.js"></script>
+<script src="theme.js"></script>
+</body>
+</html>

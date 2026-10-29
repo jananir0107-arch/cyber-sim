@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Simulator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+     <button onclick="toggleTheme()" class="theme-btn">
+    🌙 Dark / ☀️ Light
+     </button>
+    <header>
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="welcome">WELCOME TO CYBERSIM</p>
+
+            <h1>
+                Cyber Security<br>
+                <span>Simulator</span>
+            </h1>
+
+            <p class="description">
+                Learn cybersecurity concepts through interactive
+                simulations, challenges and security tests.
+            </p>
+
+            <button onclick="window.location.href='dashboard.html'">
+                🚀 Start Simulation
+            </button>
+
+        </div>
+
+        <div class="shield">
+            🛡️
+        </div>
+
+    </section>
+
+    <section id="features">
+
+        <h2>What You Can Learn</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🔐</div>
+                <h3>Password Security</h3>
+                <p>Test password strength and learn how to create secure passwords.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎣</div>
+                <h3>Phishing Detection</h3>
+                <p>Identify suspicious messages and learn phishing awareness.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌐</div>
+                <h3>Network Security</h3>
+                <p>Understand basic network threats through safe simulations.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧠</div>
+                <h3>Security Quiz</h3>
+                <p>Test your cybersecurity knowledge with interactive questions.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="about">
+
+        <h2>About The Simulator</h2>
+
+        <p class="about-text">
+            Cyber Security Simulator is an educational project designed
+            to help students understand basic cybersecurity concepts
+            through simple and interactive simulations.
+        </p>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Cyber Security Simulator | Educational Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+<script>
+fetch("http://127.0.0.1:5000/api/status")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.log("Backend connection failed:", error);
+    });
+</script>
+   <script src="theme.js"></script>
+</body>
+</html>

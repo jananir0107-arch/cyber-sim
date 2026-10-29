@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Simulator | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .simulator {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .sim-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+
+        .message-box {
+            background: #ffffff;
+            color: #222222;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .message-box h3 {
+            margin-top: 0;
+        }
+
+        .sim-button {
+            padding: 11px 18px;
+            margin: 6px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: #00c9ff;
+            color: #07152f;
+        }
+
+        .danger {
+            background: #ff5252;
+            color: white;
+        }
+
+        .safe {
+            background: #20c997;
+            color: #07152f;
+        }
+
+        .sim-button:hover {
+            opacity: 0.85;
+        }
+
+        #result, #challengeResult {
+            font-weight: bold;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .score {
+            font-size: 24px;
+            color: #00e5ff;
+            font-weight: bold;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00e5ff;
+        }
+
+        @media (max-width: 600px) {
+            .simulator {
+                padding: 10px;
+            }
+
+            .sim-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="simulator">
+
+        <a href="dashboard.html" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+        <h1>🎣 Phishing Investigation Center</h1>
+
+        <p>
+            Investigate suspicious messages, identify warning signs,
+            and learn how to stay safe online.
+        </p>
+
+        <div class="sim-card">
+            <h2>📊 Investigation Dashboard</h2>
+
+            <p>Messages Investigated:
+                <span id="totalScans" class="score">0</span>
+            </p>
+
+            <p>Phishing Messages Identified:
+                <span id="phishingFound" class="score">0</span>
+            </p>
+
+            <p>Investigation Points:
+                <span id="score" class="score">0</span>
+            </p>
+        </div>
+
+        <div class="sim-card">
+            <h2>📩 Suspicious Message</h2>
+
+            <p>
+                Read the message carefully and decide whether it
+                is phishing or safe.
+            </p>
+
+            <div class="message-box">
+                <h3 id="sender">Unknown Sender</h3>
+                <p><strong>Subject:</strong> <span id="subject"></span></p>
+                <p id="message"></p>
+            </div>
+
+            <button class="sim-button primary" onclick="investigateMessage()">
+                🔍 Investigate Message
+            </button>
+
+            <button class="sim-button danger" onclick="reportPhishing()">
+                🚫 Report as Phishing
+            </button>
+
+            <button class="sim-button safe" onclick="markSafe()">
+                🛡️ Mark as Safe
+            </button>
+
+            <p id="result" aria-live="polite">
+                Start your investigation!
+            </p>
+
+            <button class="sim-button primary" onclick="nextMessage()">
+                ➡️ Next Message
+            </button>
+        </div>
+
+        <div class="sim-card">
+            <h2>🚩 Warning Signs</h2>
+            <ul id="warningSigns">
+                <li>Investigate a message to see its warning signs.</li>
+            </ul>
+        </div>
+
+        <div class="sim-card">
+            <h2>🧠 Security Challenge</h2>
+
+            <p id="challengeQuestion">
+                Which detail is a common phishing warning sign?
+            </p>
+
+            <button class="sim-button primary"
+                onclick="answerChallenge(0)">
+                A. Urgent demand for an OTP
+            </button>
+
+            <button class="sim-button primary"
+                onclick="answerChallenge(1)">
+                B. Checking through the official app
+            </button>
+
+            <button class="sim-button primary"
+                onclick="answerChallenge(2)">
+                C. Using a unique password
+            </button>
+
+            <p id="challengeResult" aria-live="polite"></p>
+
+            <button class="sim-button primary" onclick="resetChallenge()">
+                🔄 Try Again
+            </button>
+        </div>
+
+    </main>
+
+    <script src="phishing-simulator.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+</html>

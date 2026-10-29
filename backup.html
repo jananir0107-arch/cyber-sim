@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Backup - CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .backup-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .backup-options label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .backup-options input[type="file"] {
+            padding: 10px;
+            border-radius: 8px;
+            background: white;
+        }
+
+        #progressContainer {
+            margin-top: 20px;
+        }
+
+        #backupProgress {
+            width: 100%;
+            height: 20px;
+        }
+
+        #progressText {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #backupStatus,
+        #backupResult {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>💾 Data Backup Simulator</h1>
+        <p>Learn how backups protect your important data</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+            <h2>What is Data Backup?</h2>
+
+            <p>
+                A data backup is a copy of important files stored in
+                another location. Backups help recover data after
+                accidental deletion, hardware failure, or cyber attacks.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>🛡️ Why is Backup Important?</h2>
+
+            <ul>
+                <li>Protects important files.</li>
+                <li>Helps recover data after ransomware attacks.</li>
+                <li>Prevents permanent data loss.</li>
+                <li>Provides a recovery option after system failure.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>📦 Types of Backup</h2>
+
+            <div class="modules">
+
+                <div class="module-card">
+                    <h3>Full Backup</h3>
+                    <p>
+                        Copies all selected files and data.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>Incremental Backup</h3>
+                    <p>
+                        Copies only data changed since the last backup.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>Cloud Backup</h3>
+                    <p>
+                        Stores backup data securely on cloud storage.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Real Backup Operation -->
+
+        <section class="card">
+            <h2>💾 Backup Operation</h2>
+
+            <p>
+                Select a file from your computer to create a backup copy.
+            </p>
+
+            <div class="backup-options">
+
+                <label>
+                    📁 Choose File:
+                    <input type="file" id="backupFile">
+                </label>
+
+            </div>
+
+            <button onclick="startBackup()">
+                🚀 Start Backup
+            </button>
+
+            <p id="backupStatus"></p>
+
+            <div id="progressContainer" style="display: none;">
+
+                <progress id="backupProgress"
+                          value="0"
+                          max="100">
+                </progress>
+
+                <p id="progressText">0%</p>
+
+            </div>
+
+            <p id="backupResult"></p>
+
+        </section>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+    <script src="backup.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+</html>

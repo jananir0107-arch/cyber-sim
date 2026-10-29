@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Access Control - CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .access-panel {
+            margin-top: 20px;
+        }
+
+        .access-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .access-row button {
+            min-width: 130px;
+        }
+
+        #accessResult {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🔐 Access Control Simulator</h1>
+        <p>Control who can access protected resources</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+            <h2>What is Access Control?</h2>
+
+            <p>
+                Access control is a security mechanism that determines
+                who is allowed to access systems, files, applications,
+                or other protected resources.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>👤 User Roles</h2>
+
+            <div class="modules">
+
+                <div class="module-card">
+                    <h3>👑 Administrator</h3>
+                    <p>
+                        Has permission to manage systems and users.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>👨‍💻 Employee</h3>
+                    <p>
+                        Can access resources required for their work.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>👤 Guest</h3>
+                    <p>
+                        Has limited access to protected resources.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="card">
+
+            <h2>🎯 Access Control Operation</h2>
+
+            <p>
+                Select a user and try to access a protected resource.
+            </p>
+
+            <div class="access-panel">
+
+                <div class="access-row">
+                    <span>👑 Administrator → Security Settings</span>
+
+                    <button onclick="checkAccess('admin')">
+                        Request Access
+                    </button>
+                </div>
+
+                <div class="access-row">
+                    <span>👨‍💻 Employee → Security Settings</span>
+
+                    <button onclick="checkAccess('employee')">
+                        Request Access
+                    </button>
+                </div>
+
+                <div class="access-row">
+                    <span>👤 Guest → Security Settings</span>
+
+                    <button onclick="checkAccess('guest')">
+                        Request Access
+                    </button>
+                </div>
+
+            </div>
+
+            <p id="accessResult"></p>
+
+        </section>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+    <script src="access-control.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Phishing Investigation Center | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .investigation-container {
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .investigation-card {
+            margin: 25px 0;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .email-input {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        .scan-button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        .risk-dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .risk-card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .risk-number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .risk-meter {
+            width: 100%;
+            height: 22px;
+            margin: 15px 0;
+        }
+
+        .red-flag {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: rgba(255, 70, 70, 0.12);
+            border-left: 4px solid #ff5252;
+        }
+
+        .safe-sign {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: rgba(0, 220, 130, 0.12);
+            border-left: 4px solid #00dc82;
+        }
+
+        .challenge-option {
+            display: block;
+            width: 100%;
+            margin: 12px 0;
+            padding: 14px;
+            text-align: left;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #scanResult,
+        #challengeFeedback {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .history-entry {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 650px) {
+            .risk-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="investigation-container">
+
+        <section class="card">
+            <h1>🎣 Phishing Investigation Center</h1>
+
+            <p>
+                Investigate suspicious messages, identify warning signs,
+                calculate risk scores and test your phishing awareness.
+            </p>
+        </section>
+
+        <!-- Email Scanner -->
+
+        <section class="investigation-card">
+
+            <h2>📧 Email & Message Scanner</h2>
+
+            <p>Paste a suspicious email, SMS or message below.</p>
+
+            <textarea
+                id="emailMessage"
+                class="email-input"
+                placeholder="Example: URGENT! Your bank account will be blocked. Click here to verify your password."
+            ></textarea>
+
+            <button class="scan-button" onclick="scanMessage()">
+                🔍 Investigate Message
+            </button>
+
+            <button class="scan-button" onclick="loadSample()">
+                🧪 Load Test Message
+            </button>
+
+            <button class="scan-button" onclick="clearScanner()">
+                🗑️ Clear
+            </button>
+
+            <p id="scanResult" aria-live="polite">
+                Waiting for a message to investigate.
+            </p>
+
+        </section>
+
+        <!-- Risk Dashboard -->
+
+        <section class="investigation-card">
+
+            <h2>📊 Investigation Dashboard</h2>
+
+            <div class="risk-dashboard">
+
+                <div class="risk-card">
+                    <h3>⚠️ Risk Score</h3>
+                    <p class="risk-number" id="riskScore">--</p>
+                    <p>/ 100</p>
+                </div>
+
+                <div class="risk-card">
+                    <h3>🔍 Messages Scanned</h3>
+                    <p class="risk-number" id="messagesScanned">0</p>
+                </div>
+
+                <div class="risk-card">
+                    <h3>🎣 High-Risk Findings</h3>
+                    <p class="risk-number" id="highRiskCount">0</p>
+                </div>
+
+            </div>
+
+            <label for="riskMeter">Message Risk Level</label>
+
+            <progress
+                id="riskMeter"
+                class="risk-meter"
+                value="0"
+                max="100"
+            ></progress>
+
+            <p id="riskExplanation">
+                Scan a message to see its risk assessment.
+            </p>
+
+        </section>
+
+        <!-- Red Flags -->
+
+        <section class="investigation-card">
+
+            <h2>🚩 Suspicious Signs Found</h2>
+
+            <div id="redFlags">
+                <p>No investigation performed yet.</p>
+            </div>
+
+        </section>
+
+        <!-- Detective Challenge -->
+
+        <section class="investigation-card">
+
+            <h2>🕵️ Phishing Detective Challenge</h2>
+
+            <p id="challengeNumber">Challenge 1</p>
+
+            <h3 id="challengeQuestion">
+                Loading challenge...
+            </h3>
+
+            <div id="challengeOptions"></div>
+
+            <p id="challengeFeedback" aria-live="polite"></p>
+
+            <button
+                class="scan-button"
+                id="nextChallenge"
+                onclick="nextChallenge()"
+                style="display:none;"
+            >
+                ➡️ Next Challenge
+            </button>
+
+        </section>
+
+        <!-- History -->
+
+        <section class="investigation-card">
+
+            <h2>📋 Investigation History</h2>
+
+            <div id="investigationHistory">
+                <p>Your scanned messages will appear here.</p>
+            </div>
+
+            <button class="scan-button" onclick="clearHistory()">
+                🗑️ Clear History
+            </button>
+
+        </section>
+
+        <section class="card">
+            <h2>🛡️ Stay Safe</h2>
+
+            <ul>
+                <li>Never share passwords or OTPs through unexpected messages.</li>
+                <li>Verify requests using an official website or known phone number.</li>
+                <li>Do not open suspicious links or attachments.</li>
+                <li>Remember that legitimate-looking messages can also be fraudulent.</li>
+            </ul>
+
+            <p>
+                <strong>Important:</strong>
+                This is an educational, rule-based simulator.
+                It does not verify real senders, visit links or guarantee
+                that a message is safe.
+            </p>
+        </section>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Cyber Security Simulator | Educational Project</p>
+    </footer>
+
+    <button onclick="window.location.href='phishing-simulator.html'">
+    🎣 Start Phishing Simulation
+    </button>
+
+    <script src="phishing.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+</html>

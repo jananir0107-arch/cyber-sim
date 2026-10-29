@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Encryption Lab | CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .encryption-box {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .input-box {
+            margin: 20px 0;
+        }
+
+        .input-box textarea,
+        .input-box input,
+        .input-box select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #00e5ff;
+            box-sizing: border-box;
+        }
+
+        .encryption-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .encryption-buttons button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .output-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            word-break: break-word;
+        }
+
+        #encryptedText,
+        #decryptedText {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .security-dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .security-card {
+            padding: 18px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .attack-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        #attackResult {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 700px) {
+            .encryption-buttons,
+            .security-dashboard {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">🛡️ CyberSim</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="card">
+
+            <h1>🔐 Cyber Encryption Lab</h1>
+
+            <p>
+                Protect secret information using different encryption techniques.
+            </p>
+
+        </section>
+
+
+        <section class="card encryption-box">
+
+            <h2>🔒 Encryption Simulator</h2>
+
+            <div class="input-box">
+
+                <label>
+                    📝 Enter Secret Message
+                </label>
+
+                <textarea
+                    id="message"
+                    rows="5"
+                    placeholder="Example: My password is safe">
+                </textarea>
+
+            </div>
+
+
+            <div class="input-box">
+
+                <label>
+                    🔑 Encryption Key
+                </label>
+
+                <input
+                    type="number"
+                    id="key"
+                    placeholder="Enter key">
+            </div>
+
+
+            <div class="input-box">
+
+                <label>
+                    ⚙️ Select Encryption Method
+                </label>
+
+                <select id="method">
+
+                    <option value="caesar">
+                        Caesar Cipher
+                    </option>
+
+                    <option value="xor">
+                        XOR Encryption
+                    </option>
+
+                    <option value="base64">
+                        Base64 Encoding
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="encryption-buttons">
+
+                <button onclick="encryptMessage()">
+                    🔒 Encrypt
+                </button>
+
+                <button onclick="decryptMessage()">
+                    🔓 Decrypt
+                </button>
+
+            </div>
+
+
+            <div class="output-box">
+
+                <h3>🔐 Encrypted Message</h3>
+
+                <p id="encryptedText">
+                    No encrypted message yet.
+                </p>
+
+
+                <h3>🔓 Decrypted Message</h3>
+
+                <p id="decryptedText">
+                    No decrypted message yet.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>📊 Security Dashboard</h2>
+
+            <div class="security-dashboard">
+
+                <div class="security-card">
+
+                    <h3>🛡️ Security Score</h3>
+
+                    <p id="securityScore">
+                        50
+                    </p>
+
+                </div>
+
+
+                <div class="security-card">
+
+                    <h3>🔒 Encryption Status</h3>
+
+                    <p id="encryptionStatus">
+                        Not Encrypted
+                    </p>
+
+                </div>
+
+
+                <div class="security-card">
+
+                    <h3>🔑 Key Status</h3>
+
+                    <p id="keyStatus">
+                        No Key
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card attack-box">
+
+            <h2>🕵️ Attack Simulation</h2>
+
+            <p>
+                Simulate an attacker trying to read your encrypted message.
+            </p>
+
+            <button onclick="simulateAttack()">
+                🕵️ Start Attack Simulation
+            </button>
+
+            <p id="attackResult"></p>
+
+        </section>
+
+
+        <br>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Cyber Security Simulator | Educational Project
+        </p>
+
+    </footer>
+
+
+    <script src="encryption.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+
+</html>

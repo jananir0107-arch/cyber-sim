@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Authentication - CyberSim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .auth-form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            box-sizing: border-box;
+        }
+
+        .auth-form label {
+            font-weight: bold;
+        }
+
+        #authResult {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 17px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🔐 Authentication Simulator</h1>
+        <p>Verify user identity before granting access</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+            <h2>What is Authentication?</h2>
+
+            <p>
+                Authentication is the process of verifying the identity
+                of a user before allowing access to a system or resource.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>🛡️ Authentication Methods</h2>
+
+            <div class="modules">
+
+                <div class="module-card">
+                    <h3>🔑 Password</h3>
+                    <p>
+                        A secret password is used to verify the user's identity.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>📱 OTP</h3>
+                    <p>
+                        A one-time password provides an additional
+                        verification step.
+                    </p>
+                </div>
+
+                <div class="module-card">
+                    <h3>🔐 Two-Factor Authentication</h3>
+                    <p>
+                        Uses two different verification factors to
+                        improve account security.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="card">
+
+            <h2>🎯 Login Authentication Operation</h2>
+
+            <div class="auth-form">
+
+                <label for="username">
+                    👤 Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                >
+
+                <label for="password">
+                    🔑 Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                >
+
+                <button onclick="authenticateUser()">
+                    🔓 Login
+                </button>
+
+                <p id="authResult"></p>
+
+            </div>
+
+        </section>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ⬅ Back to Dashboard
+        </button>
+
+    </main>
+
+    <script src="authentication.js"></script>
+     <script src="theme.js"></script>
+</body>
+</html>
